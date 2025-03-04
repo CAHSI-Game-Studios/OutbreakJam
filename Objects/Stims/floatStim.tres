@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="StimResource" load_steps=2 format=3 uid="uid://bcm58g23388qj"]
+
+[ext_resource type="Script" uid="uid://bsfu47enjph03" path="res://Scripts/Resources/StimResource.gd" id="1_c4m28"]
+
+[resource]
+script = ExtResource("1_c4m28")
+type = 3
+decayAmount = 10
+metadata/_custom_type_script = "uid://bsfu47enjph03"
