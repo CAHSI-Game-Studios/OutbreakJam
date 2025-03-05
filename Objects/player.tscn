@@ -562,8 +562,8 @@ transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition
 graph_offset = Vector2(-52, 43.8989)
 
 [node name="Player" type="CharacterBody2D"]
-collision_layer = 16
-collision_mask = 16
+collision_layer = 17
+collision_mask = 17
 script = ExtResource("1_k6cil")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
