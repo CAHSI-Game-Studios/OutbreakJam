@@ -1,5 +1,5 @@
 extends CharacterBody2D
-
+class_name Player
 @onready var animation_tree: AnimationTree = $AnimationTree
 @export var maxDecay : int = 100
 
