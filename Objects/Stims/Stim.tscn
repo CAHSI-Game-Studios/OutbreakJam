@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://cfkq0jo86lkhh"]
 
-[ext_resource type="Script" uid="uid://2auwu6lvynxo" path="res://Scripts/Objects/Stim.gd" id="1_o3y0x"]
+[ext_resource type="Script" path="res://Scripts/Objects/Stim.gd" id="1_o3y0x"]
 [ext_resource type="Texture2D" uid="uid://d2ubdtte7ntr5" path="res://Assets/Objects/stimSheet.png" id="1_wjmho"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wjmho"]
