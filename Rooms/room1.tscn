@@ -1,4 +1,7 @@
+
 [gd_scene load_steps=7 format=4 uid="uid://c4flp50qniqrw"]
+[gd_scene load_steps=9 format=4 uid="uid://c4flp50qniqrw"]
+
 
 [ext_resource type="Script" uid="uid://rd2hbd32gk06" path="res://Scripts/Objects/roomScript.gd" id="1_f8sis"]
 [ext_resource type="TileSet" uid="uid://38g843gq00bl" path="res://TileSets/facilityDecoration.tres" id="1_la4ie"]
@@ -6,6 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://ca6jump7eimv0" path="res://Objects/tempTerminal.tscn" id="3_0wu6n"]
 [ext_resource type="PackedScene" uid="uid://dhjixin4pocsq" path="res://Objects/player.tscn" id="4_jn5mg"]
 [ext_resource type="PackedScene" uid="uid://cfkq0jo86lkhh" path="res://Objects/Stims/Stim.tscn" id="5_f8sis"]
+[ext_resource type="Resource" uid="uid://d4dhw4wq7s5uv" path="res://Objects/Stims/dashStim.tres" id="6_aojjf"]
+[ext_resource type="Resource" uid="uid://bcm58g23388qj" path="res://Objects/Stims/floatStim.tres" id="7_aojjf"]
+[ext_resource type="PackedScene" uid="uid://b8k8iwkncvfxs" path="res://Objects/jump_pad.tscn" id="8_owp4m"]
 
 [node name="Room1" type="Node2D"]
 script = ExtResource("1_f8sis")
@@ -35,6 +41,7 @@ offset_right = 110.0
 offset_bottom = -114.0
 scale = Vector2(7.20185, 3.81288)
 
+
 [node name="StimSelectUI" type="HBoxContainer" parent="."]
 offset_left = 175.0
 offset_top = -54.0
@@ -63,3 +70,14 @@ visible = false
 [connection signal="pressed" from="StimSelectUI/stim1" to="." method="_on_stim_1_pressed"]
 [connection signal="pressed" from="StimSelectUI/stim2" to="." method="_on_stim_2_pressed"]
 [connection signal="pressed" from="StimSelectUI/stim3" to="." method="_on_stim_3_pressed"]
+
+[node name="floatStim" parent="." instance=ExtResource("5_f8sis")]
+position = Vector2(343, -14)
+StimStype = ExtResource("7_aojjf")
+
+[node name="JumpPad" parent="." instance=ExtResource("8_owp4m")]
+position = Vector2(256, -17)
+rotation = 4.71239
+
+[node name="JumpPad2" parent="." instance=ExtResource("8_owp4m")]
+position = Vector2(12, -53)
