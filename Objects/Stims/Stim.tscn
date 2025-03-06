@@ -42,11 +42,10 @@ animations = [{
 "texture": SubResource("AtlasTexture_umdun")
 }],
 "loop": true,
-"name": &"stims",
+"name": &"default",
 "speed": 0.0
 }]
 
 [node name="Stim" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_bgxvq")
-animation = &"stims"
 script = ExtResource("1_o3y0x")
