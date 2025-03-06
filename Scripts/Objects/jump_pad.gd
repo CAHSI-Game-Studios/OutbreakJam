@@ -1,6 +1,7 @@
 extends Node2D
+class_name JumpPad
 #author Yadziel
-@onready var force = 500
+@export var force = 500
 
 func _on_area_2d_body_entered(body: Player) -> void:
 	print("me cago en luma")

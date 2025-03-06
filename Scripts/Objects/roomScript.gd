@@ -1,6 +1,8 @@
 extends Node2D
 class_name Room
 
+@onready var audio_stream_player_2d: AudioStreamPlayer2D = $Player/AudioStreamPlayer2D
+
 
 @onready var stim_select_ui: Control = $StimSelectUI
 @onready var player: Player = $Player
@@ -19,6 +21,7 @@ const MAGNETIC_STIM = preload("res://Objects/Stims/magneticStim.tres")
 
 # Author: Puma
 func _ready():
+	Global.playerReference = player.duplicate()
 	player.allowInput = false
 	for textButton : TextureButton in stim_select_ui.get_children():
 		var currentStim : Stim = textButton.get_child(0)
@@ -36,11 +39,14 @@ func _ready():
 		elif randonInteger <= 100:
 			currentStim.StimType = MAGNETIC_STIM
 		currentStim.frame = currentStim.getType()# Type is an enumerator, see StimResource.gd
-		textButton.texture_normal = currentStim.sprite_frames.get_frame_texture("default",currentStim.frame)		
+		textButton.texture_normal = currentStim.sprite_frames.get_frame_texture("default",currentStim.frame)
+		audio_stream_player_2d.play()
+func _process(delta: float) -> void:
+	if !audio_stream_player_2d.playing:
+		audio_stream_player_2d
 func beginRoom():
 	player.allowInput = true
 	stim_select_ui.visible = false
-	$temp.visible = false
 func _on_stim_1_pressed() -> void:
 	player.giveStim(stim_select_ui.get_child(0).get_child(0))
 	beginRoom()
@@ -50,3 +56,4 @@ func _on_stim_2_pressed() -> void:
 func _on_stim_3_pressed() -> void:
 	player.giveStim(stim_select_ui.get_child(2).get_child(0))
 	beginRoom()
+	get_tree()
