@@ -1,14 +1,9 @@
 extends AnimatedSprite2D
-
 class_name Stim
 
-@export var StimStype : StimResource
-
-
-func _ready() -> void:
-	self.frame = StimStype.type
+@export var StimType : StimResource
 
 func getType() -> int:
-	return StimStype.type
+	return StimType.type
 func getDecayCost() -> int:
-	return StimStype.decayAmount
+	return StimType.decayAmount

@@ -1,0 +1,48 @@
+[gd_scene load_steps=6 format=4 uid="uid://pt2cne4b811m"]
+
+[ext_resource type="Script" uid="uid://rd2hbd32gk06" path="res://Scripts/Objects/roomScript.gd" id="1_8wg8j"]
+[ext_resource type="TileSet" uid="uid://b6xkt4gowkr3s" path="res://TileSets/facilityTileSet.tres" id="2_fmw8v"]
+[ext_resource type="TileSet" uid="uid://38g843gq00bl" path="res://TileSets/facilityDecoration.tres" id="3_kqf0g"]
+[ext_resource type="PackedScene" uid="uid://dhjixin4pocsq" path="res://Objects/player.tscn" id="4_fmw8v"]
+[ext_resource type="PackedScene" uid="uid://cfkq0jo86lkhh" path="res://Objects/Stims/Stim.tscn" id="5_kqf0g"]
+
+[node name="TemplateRoom" type="Node2D"]
+script = ExtResource("1_8wg8j")
+
+[node name="walls" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAD7//v/AAAAAAAAAAD7//z/AAAAAAEAAAD7//3/AAAAAAIAAAD7//7/AAAAAAMAAAD7////AAAAAAQAAAD7/wAAAAAAAAUAAAD7/wEAAAAAAAYAAAD7/wIAAAAAAAcAAAD8//v/AAABAAAAAAD8//z/AAABAAEAAAD8//3/AAABAAIAAAD8//7/AAABAAMAAAD8////AAABAAQAAAD8/wAAAAABAAUAAAD8/wEAAAABAAYAAAD8/wIAAAABAAcAAAD9//v/AAACAAAAAAD9//z/AAACAAEAAAD9//3/AAACAAIAAAD9//7/AAACAAMAAAD9////AAACAAQAAAD9/wAAAAACAAUAAAD9/wEAAAACAAYAAAD9/wIAAAACAAcAAAD9/wMAAAACAAgAAAD+//v/AAADAAAAAAD+//z/AAADAAEAAAD+//3/AAADAAIAAAD+//7/AAADAAMAAAD+////AAADAAQAAAD+/wAAAAADAAUAAAD+/wEAAAADAAYAAAD+/wIAAAADAAcAAAD+/wMAAAADAAgAAAD///v/AAAEAAAAAAD///z/AAAEAAEAAAD///3/AAAEAAIAAAD///7/AAAEAAMAAAD/////AAAEAAQAAAD//wAAAAAEAAUAAAD//wEAAAAEAAYAAAD//wIAAAAEAAcAAAD//wMAAAAEAAgAAAAAAPv/AAAFAAAAAAAAAPz/AAAFAAEAAAAAAP3/AAAFAAIAAAAAAP7/AAAFAAMAAAAAAP//AAAFAAQAAAAAAAAAAAAFAAUAAAAAAAEAAAAFAAYAAAAAAAIAAAAFAAcAAAAAAAMAAAAFAAgAAAABAPv/AAAGAAAAAAABAPz/AAAGAAEAAAABAP3/AAAGAAIAAAABAP7/AAAGAAMAAAABAP//AAAGAAQAAAABAAAAAAAGAAUAAAABAAEAAAAGAAYAAAABAAIAAAAGAAcAAAABAAMAAAAGAAgAAAACAPv/AAAHAAAAAAACAPz/AAAHAAEAAAACAP3/AAAHAAIAAAACAP7/AAAHAAMAAAACAP//AAAHAAQAAAACAAAAAAAHAAUAAAACAAEAAAAHAAYAAAACAAIAAAAHAAcAAAACAAMAAAAHAAgAAAADAP7/AAAIAAMAAAADAP//AAAIAAQAAAADAAAAAAAIAAUAAAADAAEAAAAIAAYAAAADAAIAAAAIAAcAAAADAAMAAAAIAAgAAAA=")
+tile_set = ExtResource("2_fmw8v")
+
+[node name="decorations" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAGAP3/AAAAAAAAAAAGAP7/AAAAAAEAAAAGAP//AAAAAAIAAAAHAP3/AAABAAAAAAAHAP7/AAABAAEAAAAHAP//AAABAAIAAAAIAP7/AAACAAEAAAAIAP//AAACAAIAAAA=")
+tile_set = ExtResource("3_kqf0g")
+
+[node name="Player" parent="." instance=ExtResource("4_fmw8v")]
+position = Vector2(150, -101)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="StimSelectUI" type="HBoxContainer" parent="."]
+offset_left = 159.0
+offset_top = -295.0
+offset_right = 199.0
+offset_bottom = -255.0
+
+[node name="stim1" type="TextureButton" parent="StimSelectUI"]
+layout_mode = 2
+
+[node name="Stim" parent="StimSelectUI/stim1" instance=ExtResource("5_kqf0g")]
+
+[node name="stim2" type="TextureButton" parent="StimSelectUI"]
+layout_mode = 2
+
+[node name="Stim" parent="StimSelectUI/stim2" instance=ExtResource("5_kqf0g")]
+
+[node name="stim3" type="TextureButton" parent="StimSelectUI"]
+layout_mode = 2
+
+[node name="Stim" parent="StimSelectUI/stim3" instance=ExtResource("5_kqf0g")]
+
+[connection signal="pressed" from="StimSelectUI/stim1" to="." method="_on_stim_1_pressed"]
+[connection signal="pressed" from="StimSelectUI/stim2" to="." method="_on_stim_2_pressed"]
+[connection signal="pressed" from="StimSelectUI/stim3" to="." method="_on_stim_3_pressed"]
