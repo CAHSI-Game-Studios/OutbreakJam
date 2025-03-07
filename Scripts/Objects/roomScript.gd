@@ -49,7 +49,7 @@ func beginRoom():
 	player.allowInput = true
 	stim_select_ui.visible = false
 func endRoom():
-	next_room_ui.visible = true
+	player.velocity = Vector2.ZERO	next_room_ui.visible = true
 	player.allowInput = false
 func _on_stim_1_pressed() -> void:
 	player.giveStim(stim_select_ui.get_child(0).get_child(0))

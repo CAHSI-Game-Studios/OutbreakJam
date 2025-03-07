@@ -8,8 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://dbi60da1q547n" path="res://Assets/SpriteSheets/Locomotion/04 Roll.png" id="7_hyl1l"]
 [ext_resource type="Texture2D" uid="uid://boof1wep708e0" path="res://Assets/SpriteSheets/Locomotion/02 Run.png" id="8_sbav2"]
 [ext_resource type="Texture2D" uid="uid://bjfqrxgreinxh" path="res://Assets/Player/use_item.png" id="9_paw0b"]
+[ext_resource type="Script" uid="uid://2auwu6lvynxo" path="res://Scripts/Objects/Stim.gd" id="10_3n8j0"]
 [ext_resource type="Texture2D" uid="uid://dafucftnus3ko" path="res://Assets/Player/die.png" id="10_i71mj"]
-[ext_resource type="PackedScene" uid="uid://cfkq0jo86lkhh" path="res://Objects/Stims/Stim.tscn" id="11_sbav2"]
 
 [sub_resource type="Animation" id="Animation_ji8vt"]
 length = 0.001
@@ -691,21 +691,11 @@ offset_left = -19.0
 offset_top = -28.0
 offset_right = 21.0
 offset_bottom = 12.0
-theme_override_constants/separation = 0
+alignment = 1
 
-[node name="tempDecayIndicator" type="Label" parent="."]
-visible = false
-offset_left = -18.0
-offset_top = -27.0
-offset_right = 22.0
-offset_bottom = -4.0
-horizontal_alignment = 1
-
-[node name="tempStims" type="Node2D" parent="."]
-position = Vector2(-3, 43)
-
-[node name="Stim" parent="tempStims" instance=ExtResource("11_sbav2")]
-position = Vector2(3, 2)
+[node name="Stim" type="AnimatedSprite2D" parent="ItemUI"]
+script = ExtResource("10_3n8j0")
+metadata/_custom_type_script = "uid://2auwu6lvynxo"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(3.65, 3.65)

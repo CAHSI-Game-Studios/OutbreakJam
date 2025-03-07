@@ -215,6 +215,7 @@ func getMaxDecay() -> float:
 	return self.maxDecay
 func _on_dashing_timer_timeout() -> void:
 	isDashing = false
-	
+func reroll() -> void:
+	pass
 func reset_decay():
 	decay = 0

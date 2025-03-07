@@ -1,15 +1,14 @@
-[gd_scene load_steps=14 format=4 uid="uid://pt2cne4b811m"]
+[gd_scene load_steps=13 format=4 uid="uid://pt2cne4b811m"]
 
 [ext_resource type="Script" uid="uid://rd2hbd32gk06" path="res://Scripts/Objects/roomScript.gd" id="1_8wg8j"]
 [ext_resource type="TileSet" uid="uid://b6xkt4gowkr3s" path="res://TileSets/facilityTileSet.tres" id="2_fmw8v"]
 [ext_resource type="TileSet" uid="uid://38g843gq00bl" path="res://TileSets/facilityDecoration.tres" id="3_kqf0g"]
 [ext_resource type="PackedScene" uid="uid://dhjixin4pocsq" path="res://Objects/player.tscn" id="4_fmw8v"]
-[ext_resource type="PackedScene" uid="uid://cfkq0jo86lkhh" path="res://Objects/Stims/Stim.tscn" id="5_kqf0g"]
 [ext_resource type="Texture2D" uid="uid://bfkcc2k4e88pf" path="res://Assets/Backgrounds/backo.png" id="6_slcgv"]
-[ext_resource type="PackedScene" uid="uid://b8wtdwhlna4ln" path="res://Objects/endPod.tscn" id="7_uf1if"]
+[ext_resource type="PackedScene" path="res://Objects/endPod.tscn" id="7_uf1if"]
 [ext_resource type="Texture2D" uid="uid://dwlb7r3ytdrfy" path="res://Assets/Backgrounds/middle.png" id="7_y71i1"]
 [ext_resource type="Texture2D" uid="uid://bu0mt5k7l54ib" path="res://Assets/Backgrounds/front.png" id="8_85a0l"]
-[ext_resource type="PackedScene" uid="uid://blv5rb2td7brd" path="res://Objects/starterPod.tscn" id="8_ixaof"]
+[ext_resource type="PackedScene" path="res://Objects/starterPod.tscn" id="8_ixaof"]
 [ext_resource type="AudioStream" uid="uid://c5e4der8168q8" path="res://Assets/Music/industrial.mp3" id="9_y71i1"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_uf1if"]
@@ -46,30 +45,6 @@ position = Vector2(-111, -205)
 position = Vector2(111, 205)
 stream = ExtResource("9_y71i1")
 max_distance = 1e+10
-
-[node name="StimSelectUI" type="HBoxContainer" parent="Player"]
-offset_left = -43.0
-offset_top = -8.0
-offset_right = -3.0
-offset_bottom = 32.0
-
-[node name="stim1" type="TextureButton" parent="Player/StimSelectUI"]
-layout_mode = 2
-
-[node name="Stim" parent="Player/StimSelectUI/stim1" instance=ExtResource("5_kqf0g")]
-visible = false
-
-[node name="stim2" type="TextureButton" parent="Player/StimSelectUI"]
-layout_mode = 2
-
-[node name="Stim" parent="Player/StimSelectUI/stim2" instance=ExtResource("5_kqf0g")]
-visible = false
-
-[node name="stim3" type="TextureButton" parent="Player/StimSelectUI"]
-layout_mode = 2
-
-[node name="Stim" parent="Player/StimSelectUI/stim3" instance=ExtResource("5_kqf0g")]
-visible = false
 
 [node name="NextRoomUI" type="Control" parent="Player"]
 visible = false
@@ -138,6 +113,7 @@ text = "RETRY ROOM"
 flat = true
 
 [node name="RetryUI" type="Control" parent="Player"]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_left = -124.0
@@ -208,9 +184,6 @@ motion_mirroring = Vector2(1440, 0)
 scale = Vector2(3, 3)
 texture = ExtResource("8_85a0l")
 
-[connection signal="pressed" from="Player/StimSelectUI/stim1" to="." method="_on_stim_1_pressed"]
-[connection signal="pressed" from="Player/StimSelectUI/stim2" to="." method="_on_stim_2_pressed"]
-[connection signal="pressed" from="Player/StimSelectUI/stim3" to="." method="_on_stim_3_pressed"]
 [connection signal="pressed" from="Player/NextRoomUI/nextRoom" to="." method="_on_next_room_pressed"]
 [connection signal="pressed" from="Player/NextRoomUI/retryRoom" to="." method="_on_retry_room_pressed"]
 [connection signal="pressed" from="Player/RetryUI/retryRoom" to="." method="_on_retry_room_pressed"]
