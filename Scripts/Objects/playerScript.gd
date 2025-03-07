@@ -4,6 +4,7 @@ class_name Player
 @export var maxDecay : float = 100
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var dashing_timer: Timer = $dashingTimer
+@onready var decay_bar: ProgressBar = $CanvasLayer/DecayBar
 
 
 const SPEED : int = 300.0
@@ -22,7 +23,7 @@ var allowInput : bool = true
 # IMPLEMENT LOGIC TO CHANGE selectedStim maybe a keypressed -1/+1 the value
 @export var heldStims : Array[Stim]
 var selectedStim : int
-var decay : float
+var decay : float 
 
 # Stim variables
 var canDash : bool = true
@@ -47,16 +48,28 @@ func _ready():
 	for stim in $tempStims.get_children():
 		if stim is Stim:
 			heldStims.push_back(stim)                                                                                                             
-	decay = maxDecay
+	decay = 0
+	decay_bar.max_value = maxDecay
+	decay_bar.position = Vector2(50, 50)
+	decay_bar.value = decay
 	animation_tree.active = true
 	
 
 # Runs every frame
 func _physics_process(delta: float) -> void:
-	decay -= delta*5
+	decay += delta* 1.5
+	if running > 1:
+		decay += delta * 2
+	if isDashing:
+		decay += delta * 4
+	if jumped:
+		decay += delta * 3
+	decay = min(decay,maxDecay)
 	update_ui()
 	update_animation_parameters()
 	input()
+	decay_bar.position = Vector2(position.x - 50, position.y - 40)  # 50 es el desplazamiento hacia arriba
+
 
 	if isDashing:
 		currentMaxSpeed = maxSpeedDash
@@ -81,7 +94,10 @@ func _physics_process(delta: float) -> void:
 # Updates UI elements
 func update_ui():
 	# update stim UI here
-	$tempDecayIndicator.text = str(int(decay))
+	#$tempDecayIndicator.text = str(int(decay))
+	decay_bar.value = decay
+	#decay_bar.text = str(int(decay))
+	#$CanvasLayer.position = get_viewport().get_camera_2d().get_screen_center_position()
 # Handles the input 
 func input():
 	if allowInput:
@@ -167,7 +183,8 @@ func useStim() -> void:
 		4: 
 			applyMagneticStim()
 	# remove stim from the ui
-	decay -= stimToUse.getDecayCost()
+	decay += stimToUse.getDecayCost()
+	decay = min(decay,maxDecay)
 	heldStims.erase(stimToUse)
 
 func applyDashStim() -> void:
@@ -198,3 +215,6 @@ func getMaxDecay() -> float:
 	return self.maxDecay
 func _on_dashing_timer_timeout() -> void:
 	isDashing = false
+	
+func reset_decay():
+	decay = 0
