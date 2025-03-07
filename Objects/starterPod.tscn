@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://blv5rb2td7brd"]
+
+[ext_resource type="Script" uid="uid://cjytv7whab7jp" path="res://Scripts/Objects/startedPod.gd" id="1_27mnr"]
+[ext_resource type="Texture2D" uid="uid://bxgwmjyysdw6o" path="res://Assets/Objects/starterPod.png" id="2_yiubp"]
+
+[node name="StarterPod" type="Marker2D"]
+script = ExtResource("1_27mnr")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(-1, 1)
+texture = ExtResource("2_yiubp")

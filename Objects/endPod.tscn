@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://b8wtdwhlna4ln"]
+
+[ext_resource type="Script" uid="uid://3g8elguckmx4" path="res://Scripts/Objects/endPod.gd" id="1_wkcjv"]
+[ext_resource type="Texture2D" uid="uid://b7fjoyek66inq" path="res://Assets/Objects/endPod.png" id="2_0gvoc"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_saqo7"]
+radius = 22.0
+height = 62.0
+
+[node name="EndPod" type="Area2D"]
+script = ExtResource("1_wkcjv")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_0gvoc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_saqo7")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

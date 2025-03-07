@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://dpqdii8rhshq"]
+[gd_scene load_steps=12 format=4 uid="uid://dpqdii8rhshq"]
 
 [ext_resource type="Script" uid="uid://rd2hbd32gk06" path="res://Scripts/Objects/roomScript.gd" id="1_16wms"]
 [ext_resource type="TileSet" uid="uid://b6xkt4gowkr3s" path="res://TileSets/facilityTileSet.tres" id="2_f8sis"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://cfkq0jo86lkhh" path="res://Objects/Stims/Stim.tscn" id="5_irvpg"]
 [ext_resource type="AudioStream" uid="uid://c5e4der8168q8" path="res://Assets/Music/industrial.mp3" id="5_rp1fi"]
 [ext_resource type="PackedScene" uid="uid://b8k8iwkncvfxs" path="res://Objects/jump_pad.tscn" id="10_rp1fi"]
+[ext_resource type="Texture2D" uid="uid://b7fjoyek66inq" path="res://Assets/Objects/endPod.png" id="11_iurjl"]
 
 [node name="room1" type="Node2D"]
 script = ExtResource("1_16wms")
@@ -30,37 +31,35 @@ position = Vector2(111, 205)
 stream = ExtResource("5_rp1fi")
 max_distance = 1e+10
 
-[node name="StimSelectUI" type="HBoxContainer" parent="."]
-offset_left = -154.0
-offset_top = -213.0
-offset_right = -114.0
-offset_bottom = -173.0
+[node name="StimSelectUI" type="HBoxContainer" parent="Player"]
+offset_right = 40.0
+offset_bottom = 40.0
 
-[node name="stim1" type="TextureButton" parent="StimSelectUI"]
+[node name="stim1" type="TextureButton" parent="Player/StimSelectUI"]
 layout_mode = 2
 
-[node name="Stim" parent="StimSelectUI/stim1" instance=ExtResource("5_irvpg")]
+[node name="Stim" parent="Player/StimSelectUI/stim1" instance=ExtResource("5_irvpg")]
 visible = false
 
-[node name="stim2" type="TextureButton" parent="StimSelectUI"]
+[node name="stim2" type="TextureButton" parent="Player/StimSelectUI"]
 layout_mode = 2
 
-[node name="Stim" parent="StimSelectUI/stim2" instance=ExtResource("5_irvpg")]
+[node name="Stim" parent="Player/StimSelectUI/stim2" instance=ExtResource("5_irvpg")]
 visible = false
 
-[node name="stim3" type="TextureButton" parent="StimSelectUI"]
+[node name="stim3" type="TextureButton" parent="Player/StimSelectUI"]
 layout_mode = 2
 
-[node name="Stim" parent="StimSelectUI/stim3" instance=ExtResource("5_irvpg")]
+[node name="Stim" parent="Player/StimSelectUI/stim3" instance=ExtResource("5_irvpg")]
 visible = false
 
 [node name="ParallexBackgrounds" type="ParallaxBackground" parent="."]
 
-[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallexBackgrounds"]
+[node name="backMachinery" type="ParallaxLayer" parent="ParallexBackgrounds"]
 motion_scale = Vector2(0.38, 0.38)
 motion_mirroring = Vector2(1440, 0)
 
-[node name="Sprite2D" type="Sprite2D" parent="ParallexBackgrounds/ParallaxLayer3"]
+[node name="Sprite2D" type="Sprite2D" parent="ParallexBackgrounds/backMachinery"]
 scale = Vector2(5, 5)
 texture = ExtResource("2_owp4m")
 
@@ -85,6 +84,10 @@ position = Vector2(-57, -79)
 rotation = 4.71239
 force = 700
 
-[connection signal="pressed" from="StimSelectUI/stim1" to="." method="_on_stim_1_pressed"]
-[connection signal="pressed" from="StimSelectUI/stim2" to="." method="_on_stim_2_pressed"]
-[connection signal="pressed" from="StimSelectUI/stim3" to="." method="_on_stim_3_pressed"]
+[node name="tempSprt" type="Sprite2D" parent="."]
+position = Vector2(389, -195)
+texture = ExtResource("11_iurjl")
+
+[connection signal="pressed" from="Player/StimSelectUI/stim1" to="." method="_on_stim_1_pressed"]
+[connection signal="pressed" from="Player/StimSelectUI/stim2" to="." method="_on_stim_2_pressed"]
+[connection signal="pressed" from="Player/StimSelectUI/stim3" to="." method="_on_stim_3_pressed"]
