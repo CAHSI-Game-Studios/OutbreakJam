@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://c4flp50qniqrw"]
+[gd_scene load_steps=10 format=4 uid="uid://c4flp50qniqrw"]
 
 [ext_resource type="TileSet" uid="uid://38g843gq00bl" path="res://TileSets/facilityDecoration.tres" id="1_la4ie"]
 [ext_resource type="TileSet" uid="uid://b6xkt4gowkr3s" path="res://TileSets/facilityTileSet.tres" id="2_oukn3"]
@@ -8,6 +8,7 @@
 [ext_resource type="Resource" uid="uid://d4dhw4wq7s5uv" path="res://Objects/Stims/dashStim.tres" id="6_aojjf"]
 [ext_resource type="Resource" uid="uid://bcm58g23388qj" path="res://Objects/Stims/floatStim.tres" id="7_aojjf"]
 [ext_resource type="PackedScene" uid="uid://b8k8iwkncvfxs" path="res://Objects/jump_pad.tscn" id="8_owp4m"]
+[ext_resource type="PackedScene" uid="uid://1k5d3ro6kkvn" path="res://Objects/spike.tscn" id="9_irvpg"]
 
 [node name="Room1" type="Node2D"]
 
@@ -43,3 +44,7 @@ rotation = 4.71239
 
 [node name="JumpPad2" parent="." instance=ExtResource("8_owp4m")]
 position = Vector2(12, -53)
+
+[node name="Spike" parent="." instance=ExtResource("9_irvpg")]
+position = Vector2(450, -64)
+rotation = -1.5708
