@@ -1,7 +1,9 @@
 extends Node2D
+class_name JumpPad
 #author Yadziel
-@onready var force = 500
+
 @onready var JP_Animation: AnimatedSprite2D = $AnimatedSprite2D
+@export var force = 500
 
 func _on_area_2d_body_entered(body: Player) -> void:
 	JP_Animation.play("default")

@@ -4,6 +4,6 @@
 
 [resource]
 script = ExtResource("1_qk8s3")
-type = 4
+type = 0
 decayAmount = -50
 metadata/_custom_type_script = "uid://bsfu47enjph03"
