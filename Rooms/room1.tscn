@@ -1,16 +1,24 @@
-[gd_scene load_steps=12 format=4 uid="uid://dpqdii8rhshq"]
+
+[ext_resource type="TileSet" uid="uid://38g843gq00bl" path="res://TileSets/facilityDecoration.tres" id="1_la4ie"]
+[ext_resource type="TileSet" uid="uid://b6xkt4gowkr3s" path="res://TileSets/facilityTileSet.tres" id="2_oukn3"]
+[ext_resource type="PackedScene" uid="uid://ca6jump7eimv0" path="res://Objects/tempTerminal.tscn" id="3_0wu6n"]
+[ext_resource type="PackedScene" uid="uid://dhjixin4pocsq" path="res://Objects/player.tscn" id="4_jn5mg"]
+[ext_resource type="PackedScene" uid="uid://cfkq0jo86lkhh" path="res://Objects/Stims/Stim.tscn" id="5_f8sis"]
+[ext_resource type="PackedScene" uid="uid://b8k8iwkncvfxs" path="res://Objects/jump_pad.tscn" id="8_owp4m"]
+[ext_resource type="PackedScene" uid="uid://1k5d3ro6kkvn" path="res://Objects/spike.tscn" id="9_irvpg"]
+
 
 [ext_resource type="Script" uid="uid://rd2hbd32gk06" path="res://Scripts/Objects/roomScript.gd" id="1_16wms"]
-[ext_resource type="TileSet" uid="uid://b6xkt4gowkr3s" path="res://TileSets/facilityTileSet.tres" id="2_f8sis"]
+
+
 [ext_resource type="Texture2D" uid="uid://bfkcc2k4e88pf" path="res://Assets/Backgrounds/backo.png" id="2_owp4m"]
-[ext_resource type="TileSet" uid="uid://38g843gq00bl" path="res://TileSets/facilityDecoration.tres" id="3_aojjf"]
 [ext_resource type="Texture2D" uid="uid://dwlb7r3ytdrfy" path="res://Assets/Backgrounds/middle.png" id="3_irvpg"]
-[ext_resource type="PackedScene" uid="uid://dhjixin4pocsq" path="res://Objects/player.tscn" id="4_owp4m"]
 [ext_resource type="Texture2D" uid="uid://bu0mt5k7l54ib" path="res://Assets/Backgrounds/front.png" id="4_rp1fi"]
-[ext_resource type="PackedScene" uid="uid://cfkq0jo86lkhh" path="res://Objects/Stims/Stim.tscn" id="5_irvpg"]
+
 [ext_resource type="AudioStream" uid="uid://c5e4der8168q8" path="res://Assets/Music/industrial.mp3" id="5_rp1fi"]
 [ext_resource type="PackedScene" uid="uid://b8k8iwkncvfxs" path="res://Objects/jump_pad.tscn" id="10_rp1fi"]
 [ext_resource type="Texture2D" uid="uid://b7fjoyek66inq" path="res://Assets/Objects/endPod.png" id="11_iurjl"]
+
 
 [node name="room1" type="Node2D"]
 script = ExtResource("1_16wms")
@@ -84,6 +92,7 @@ position = Vector2(-57, -79)
 rotation = 4.71239
 force = 700
 
+
 [node name="tempSprt" type="Sprite2D" parent="."]
 position = Vector2(389, -195)
 texture = ExtResource("11_iurjl")
@@ -91,3 +100,13 @@ texture = ExtResource("11_iurjl")
 [connection signal="pressed" from="Player/StimSelectUI/stim1" to="." method="_on_stim_1_pressed"]
 [connection signal="pressed" from="Player/StimSelectUI/stim2" to="." method="_on_stim_2_pressed"]
 [connection signal="pressed" from="Player/StimSelectUI/stim3" to="." method="_on_stim_3_pressed"]
+
+
+[node name="JumpPad2" parent="." instance=ExtResource("8_owp4m")]
+position = Vector2(12, -53)
+
+[node name="Spike" parent="." instance=ExtResource("9_irvpg")]
+position = Vector2(450, -64)
+rotation = -1.5708
+
+
