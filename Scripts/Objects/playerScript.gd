@@ -65,12 +65,13 @@ func _ready():
 func _physics_process(delta: float) -> void:
 	if decay >= maxDecay && !over:
 		die()
-	decay += delta* 1.5
-	if running > 1:
-		decay += delta * 2
-	if jumped:
-		decay += delta * 3
-	decay = min(decay,maxDecay)
+	if allowInput:
+		decay += delta* 1.5
+		if running > 1:
+			decay += delta * 2
+		if jumped:
+			decay += delta * 3
+		decay = min(decay,maxDecay)
 	update_ui()
 	update_animation_parameters()
 	input()
