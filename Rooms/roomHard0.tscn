@@ -412,6 +412,7 @@ texture = ExtResource("15_bcnjo")
 
 [node name="winSFX" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("20_xnbes")
+volume_db = 5.0
 
 [node name="Label" type="Label" parent="."]
 offset_left = 355.0

@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://rd2hbd32gk06" path="res://Scripts/Objects/roomScript.gd" id="1_d534u"]
 [ext_resource type="TileSet" uid="uid://b6xkt4gowkr3s" path="res://TileSets/facilityTileSet.tres" id="2_qqq3a"]
 [ext_resource type="TileSet" uid="uid://38g843gq00bl" path="res://TileSets/facilityDecoration.tres" id="3_rcfo7"]
-[ext_resource type="PackedScene" uid="uid://1k5d3ro6kkvn" path="res://Objects/spike.tscn" id="4_wxpuf"]
 [ext_resource type="PackedScene" uid="uid://blv5rb2td7brd" path="res://Objects/starterPod.tscn" id="7_b2fgm"]
 [ext_resource type="PackedScene" uid="uid://dj2h6lwaa0s01" path="res://Objects/laser.tscn" id="7_f7go4"]
 [ext_resource type="PackedScene" uid="uid://b8wtdwhlna4ln" path="res://Objects/endPod.tscn" id="8_ul63d"]
@@ -13,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://r0lo4p0ni73w" path="res://Assets/Backgrounds/bulkhead-walls-back.png" id="13_y8g8e"]
 [ext_resource type="Texture2D" uid="uid://dwlb7r3ytdrfy" path="res://Assets/Backgrounds/middle.png" id="14_6mjou"]
 [ext_resource type="Texture2D" uid="uid://dfx4o2ol7m3sn" path="res://Assets/Backgrounds/bulkhead-walls-platform.png" id="15_roydc"]
+[ext_resource type="AudioStream" uid="uid://djaxdxh1d3lns" path="res://Assets/SFX/win-176035.mp3" id="15_sjtgn"]
 [ext_resource type="Texture2D" uid="uid://bu0mt5k7l54ib" path="res://Assets/Backgrounds/front.png" id="16_gr0be"]
 [ext_resource type="Texture2D" uid="uid://k1n3pvmt72k" path="res://Assets/Backgrounds/bulkhead-walls-pipes.png" id="17_pm15e"]
 
@@ -22,7 +22,14 @@ font_color = Color(0, 0, 0, 1)
 
 [node name="roomEasy0" type="Node2D"]
 script = ExtResource("1_d534u")
-nextRoomPath = "res://Rooms/roomHard0.tscn"
+nextRoomPath = "res://Rooms/roomMedium0.tscn"
+
+[node name="Lasers" type="Node2D" parent="."]
+
+[node name="Laser" parent="Lasers" instance=ExtResource("7_f7go4")]
+position = Vector2(17, 73)
+rotation = 1.5708
+scale = Vector2(-3.28069, 52.8959)
 
 [node name="walls" type="TileMapLayer" parent="."]
 position = Vector2(-76, -245)
@@ -36,22 +43,22 @@ tile_set = ExtResource("3_rcfo7")
 
 [node name="RoomObjects" type="Node2D" parent="."]
 
-[node name="StarterPod" parent="RoomObjects" instance=ExtResource("7_b2fgm")]
-position = Vector2(-299, -17)
+[node name="Spikes" type="Node2D" parent="RoomObjects"]
+
+[node name="Start-End-Points" type="Node2D" parent="RoomObjects"]
+
+[node name="StarterPod" parent="RoomObjects/Start-End-Points" instance=ExtResource("7_b2fgm")]
+position = Vector2(-285, -3)
 scale = Vector2(0.576396, 0.579388)
 
-[node name="EndPod" parent="RoomObjects" instance=ExtResource("8_ul63d")]
-position = Vector2(447, -9)
+[node name="EndPod" parent="RoomObjects/Start-End-Points" instance=ExtResource("8_ul63d")]
+position = Vector2(438, -13)
 
-[node name="Spike" parent="RoomObjects" instance=ExtResource("4_wxpuf")]
-position = Vector2(-363, -4)
-rotation = 0.44086
-scale = Vector2(2.45021, -0.950156)
+[node name="Platforms" type="Node2D" parent="RoomObjects"]
 
-[node name="Laser" parent="RoomObjects" instance=ExtResource("7_f7go4")]
-position = Vector2(38, 67)
-rotation = 1.5708
-scale = Vector2(3.13001, 23.1856)
+[node name="MagneticFields" type="Node2D" parent="RoomObjects"]
+
+[node name="JumpPads" type="Node2D" parent="RoomObjects"]
 
 [node name="Player" parent="." instance=ExtResource("10_bqyhr")]
 position = Vector2(-111, -205)
@@ -217,6 +224,10 @@ motion_mirroring = Vector2(1440, 0)
 [node name="Sprite2D2" type="Sprite2D" parent="ParallexBackgrounds/frontPipes"]
 scale = Vector2(3, 3)
 texture = ExtResource("17_pm15e")
+
+[node name="winSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("15_sjtgn")
+volume_db = 24.0
 
 [connection signal="promptEndScreen" from="Player" to="." method="_on_player_prompt_end_screen"]
 [connection signal="pressed" from="Player/NextRoomUI/nextRoom" to="." method="_on_next_room_pressed"]

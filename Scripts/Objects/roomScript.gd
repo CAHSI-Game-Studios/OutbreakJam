@@ -19,6 +19,8 @@ func _ready():
 func _process(delta: float) -> void:
 	if !audio_stream_player_2d.playing:
 		audio_stream_player_2d.play()
+	if player.panickShowDisplay:
+		retry_ui.visible = true
 func beginRoom():
 	player.allowInput = true
 func endRoom():
