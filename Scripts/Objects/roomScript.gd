@@ -8,6 +8,8 @@ class_name Room
 @onready var next_room_ui: Control = $Player/NextRoomUI
 @onready var retry_ui: Control = $Player/RetryUI
 @onready var starter_pod: StarterPod = $"RoomObjects/Start-End-Points/StarterPod"
+@onready var win_sfx: AudioStreamPlayer2D = $winSFX
+
 
 # Author: Puma
 func _ready():
@@ -23,6 +25,7 @@ func endRoom():
 	player.velocity = Vector2.ZERO
 	next_room_ui.visible = true
 	player.allowInput = false
+	win_sfx.play()
 func _on_next_room_pressed() -> void:
 	get_tree().change_scene_to_file(nextRoomPath)
 func _on_retry_room_pressed() -> void:

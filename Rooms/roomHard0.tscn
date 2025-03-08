@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://by7ka3do1ao5y"]
+[gd_scene load_steps=23 format=4 uid="uid://by7ka3do1ao5y"]
 
 [ext_resource type="Script" uid="uid://rd2hbd32gk06" path="res://Scripts/Objects/roomScript.gd" id="1_ftg6l"]
 [ext_resource type="PackedScene" uid="uid://dd2mw3xef647g" path="res://Objects/magneticFieldRepel.tscn" id="2_c4x7a"]
@@ -12,6 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://c5e4der8168q8" path="res://Assets/Music/industrial.mp3" id="9_47fqb"]
 [ext_resource type="Texture2D" uid="uid://bfkcc2k4e88pf" path="res://Assets/Backgrounds/backo.png" id="10_yx8iv"]
 [ext_resource type="Texture2D" uid="uid://r0lo4p0ni73w" path="res://Assets/Backgrounds/bulkhead-walls-back.png" id="11_t8voc"]
+[ext_resource type="PackedScene" uid="uid://ca6jump7eimv0" path="res://Objects/tempTerminal.tscn" id="12_412pn"]
 [ext_resource type="Texture2D" uid="uid://dwlb7r3ytdrfy" path="res://Assets/Backgrounds/middle.png" id="12_rsuaj"]
 [ext_resource type="Texture2D" uid="uid://dfx4o2ol7m3sn" path="res://Assets/Backgrounds/bulkhead-walls-platform.png" id="13_rhwj4"]
 [ext_resource type="Texture2D" uid="uid://bu0mt5k7l54ib" path="res://Assets/Backgrounds/front.png" id="14_hghf2"]
@@ -19,12 +20,13 @@
 [ext_resource type="PackedScene" uid="uid://b82yriwh87yqa" path="res://Objects/oneWayPlatform.tscn" id="15_3n5x3"]
 [ext_resource type="Texture2D" uid="uid://k1n3pvmt72k" path="res://Assets/Backgrounds/bulkhead-walls-pipes.png" id="15_bcnjo"]
 [ext_resource type="PackedScene" uid="uid://xjwd0fo5ific" path="res://Objects/magneticFieldAttract.tscn" id="16_08mk6"]
+[ext_resource type="AudioStream" uid="uid://djaxdxh1d3lns" path="res://Assets/SFX/win-176035.mp3" id="20_xnbes"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_uf1if"]
 font_size = 30
 font_color = Color(0, 0, 0, 1)
 
-[node name="roomPOne" type="Node2D"]
+[node name="roomHard0" type="Node2D"]
 script = ExtResource("1_ftg6l")
 nextRoomPath = "res://Rooms/room1.tscn"
 
@@ -86,8 +88,7 @@ tile_map_data = PackedByteArray("AAD7//z/AAABAAAAAAD8//z/AAABAAAAAAD9//z/AAABAAA
 tile_set = ExtResource("2_pfudj")
 
 [node name="decorations" type="TileMapLayer" parent="."]
-visible = false
-tile_map_data = PackedByteArray("AAD8/woAAAABAAAAAAD//woAAAAAAAAAAAADAAoAAAAAAAAAAAAIAAoAAAAAAAAAAAAFAAoAAAACAAEAAAD6/wcAAAAAAAEAAAARAAcAAAABAAEAAAAMAAcAAAACAAIAAAA=")
+tile_map_data = PackedByteArray("AAD8/woAAAABAAAAAAD//woAAAAAAAAAAAADAAoAAAAAAAAAAAAIAAoAAAAAAAAAAAAFAAoAAAACAAEAAAD6/wcAAAAAAAEAAAARAAcAAAABAAEAAAAMAAcAAAACAAIAAAD2//v/AAAAAAAAAAACAPv/AAAAAAAAAAARAPD/AAABAAEAAAAXAPv/AAACAAEAAAD+//v/AAABAAIAAAD6//v/AAABAAIAAAD4//D/AAABAAIAAAD9//D/AAAAAAIAAAALAPD/AAABAAAAAAAOAPD/AAABAAIAAAAJAOH/AAABAAAAAAANAOH/AAABAAAAAAA=")
 tile_set = ExtResource("3_3f1pa")
 
 [node name="RoomObjects" type="Node2D" parent="."]
@@ -242,6 +243,9 @@ rotation = -1.5708
 
 [node name="JumpPad4" parent="RoomObjects/JumpPads" instance=ExtResource("14_oupdf")]
 position = Vector2(-560, -426)
+
+[node name="TempTerminal" parent="RoomObjects" instance=ExtResource("12_412pn")]
+position = Vector2(616, -976)
 
 [node name="Player" parent="." instance=ExtResource("8_i4t0p")]
 position = Vector2(74, -614)
@@ -405,6 +409,18 @@ motion_mirroring = Vector2(1440, 0)
 
 [node name="Sprite2D2" type="Sprite2D" parent="ParallexBackgrounds/frontPipes"]
 texture = ExtResource("15_bcnjo")
+
+[node name="winSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("20_xnbes")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 355.0
+offset_top = -1117.0
+offset_right = 587.0
+offset_bottom = -1068.0
+text = "Thanks for playing!
+Made by: CAHSI Game Studios"
+horizontal_alignment = 1
 
 [connection signal="promptEndScreen" from="Player" to="." method="_on_player_prompt_end_screen"]
 [connection signal="pressed" from="Player/NextRoomUI/nextRoom" to="." method="_on_next_room_pressed"]

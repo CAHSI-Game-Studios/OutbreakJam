@@ -8,12 +8,20 @@ signal promptEndScreen
 @onready var dashing_timer: Timer = $Timers/dashingTimer
 @onready var floaty_timer: Timer = $Timers/floatyTimer
 @onready var magnetic_timer: Timer = $Timers/magneticTimer
+@onready var use_stim_timer: Timer = $Timers/useStimTimer
 @onready var delay: Timer = $Timers/delay
 @onready var decay_bar: ProgressBar = $CanvasLayer/DecayBar
 @onready var item_ui: Control = $ItemUI
 @onready var button: Button = $ItemUI/rerollButton
 @onready var hover: Sprite2D = $ItemUI/hover
 @onready var begin_room: Button = $ItemUI/beginRoom
+@onready var button_click: AudioStreamPlayer2D = $buttonClick
+@onready var jump: AudioStreamPlayer2D = $jump
+@onready var dashing: AudioStreamPlayer2D = $dash
+@onready var death: AudioStreamPlayer2D = $death
+@onready var lose_sfx: AudioStreamPlayer2D = $loseSFX
+@onready var use_stim: AudioStreamPlayer2D = $useStim
+
 
 
 const SPEED : int = 300.0
@@ -47,6 +55,7 @@ var fastFall : float = 1
 var direction : float
 var isDashing: bool = false 
 var died : bool = false
+var isStimming : bool = false
 
 # Use stim variables
 var canUseDoubleJump : bool = true
@@ -135,9 +144,11 @@ func input():
 			if  is_on_floor():
 				velocity.y = JUMP_VELOCITY
 				jumped = true
+				jump.play()
 			elif canDoubleJump:
 				velocity.y = JUMP_VELOCITY
 				jumped = true
+				jump.play()
 				canDoubleJump = false
 		direction = Input.get_axis("left","right")
 		if Input.is_action_just_pressed("dash") && canDash:
@@ -155,6 +166,7 @@ func die():
 	died = true
 	allowInput = false
 	inmovable = true
+	death.play()
 	delay.start()
 	Global.addDeathCount()
   
@@ -171,7 +183,7 @@ func update_animation_parameters():
 	else:
 		animation_tree["parameters/conditions/idle"] = false
 		animation_tree["parameters/conditions/walk"] = true
-	if (Input.is_action_just_pressed("use_item")):
+	if (isStimming):
 		animation_tree["parameters/conditions/use_item"] = true
 	else:
 		animation_tree["parameters/conditions/use_item"] = false
@@ -202,6 +214,9 @@ func update_animation_parameters():
 	
 func useStim() -> void:
 	var stimToUse : Stim = heldStims[selectedStim]
+	use_stim.play()
+	isStimming = true
+	use_stim_timer.start()
 	match stimToUse.getType():
 		1: 
 			applyDashStim()
@@ -233,6 +248,7 @@ func dash() -> void:
 	dashing_timer.start()
 	isDashing = true
 	canDash = false
+	dashing.play()
 func reset_decay():
 	decay = 0
 func giveStim(newStim : Stim):
@@ -270,9 +286,11 @@ func reroll() -> void:
 		stim.used = false
 		heldStims.push_back(stim)
 func _on_reroll_button_pressed() -> void:
+	button_click.play()
 	reroll()
 func _on_begin_room_pressed() -> void:
 	get_parent().beginRoom()
+	button_click.play()
 	button.visible = false
 	begin_room.visible = false
 func _on_floaty_timer_timeout() -> void:
@@ -282,3 +300,6 @@ func _on_magnetic_timer_timeout() -> void:
 	set_collision_mask_value(2,false)
 func _on_delay_timeout() -> void:
 	promptEndScreen.emit()
+	lose_sfx.play()
+func _on_use_stim_timeout() -> void:
+	isStimming = false
