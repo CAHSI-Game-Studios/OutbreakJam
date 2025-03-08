@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=4 uid="uid://bl2pnjpt4d8xt"]
+[gd_scene load_steps=22 format=4 uid="uid://bl2pnjpt4d8xt"]
 
 [ext_resource type="Script" uid="uid://rd2hbd32gk06" path="res://Scripts/Objects/roomScript.gd" id="1_s6s88"]
 [ext_resource type="TileSet" uid="uid://b6xkt4gowkr3s" path="res://TileSets/facilityTileSet.tres" id="2_fhxds"]
@@ -15,9 +15,11 @@
 [ext_resource type="AudioStream" uid="uid://c5e4der8168q8" path="res://Assets/Music/industrial.mp3" id="13_asmp1"]
 [ext_resource type="Texture2D" uid="uid://bfkcc2k4e88pf" path="res://Assets/Backgrounds/backo.png" id="14_fodub"]
 [ext_resource type="Texture2D" uid="uid://dwlb7r3ytdrfy" path="res://Assets/Backgrounds/middle.png" id="15_1ooeo"]
+[ext_resource type="Texture2D" uid="uid://r0lo4p0ni73w" path="res://Assets/Backgrounds/bulkhead-walls-back.png" id="15_qrhen"]
 [ext_resource type="Texture2D" uid="uid://dfx4o2ol7m3sn" path="res://Assets/Backgrounds/bulkhead-walls-platform.png" id="16_bdj61"]
 [ext_resource type="Texture2D" uid="uid://bu0mt5k7l54ib" path="res://Assets/Backgrounds/front.png" id="17_d7jpp"]
 [ext_resource type="Texture2D" uid="uid://k1n3pvmt72k" path="res://Assets/Backgrounds/bulkhead-walls-pipes.png" id="18_dct0f"]
+[ext_resource type="AudioStream" uid="uid://djaxdxh1d3lns" path="res://Assets/SFX/win-176035.mp3" id="19_fhxds"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_uf1if"]
 font_size = 30
@@ -25,7 +27,7 @@ font_color = Color(0, 0, 0, 1)
 
 [node name="roomMedium" type="Node2D"]
 script = ExtResource("1_s6s88")
-nextRoomPath = "res://Rooms/room1.tscn"
+nextRoomPath = "res://Rooms/roomHard0.tscn"
 
 [node name="walls" type="TileMapLayer" parent="."]
 position = Vector2(-3, -3)
@@ -200,7 +202,7 @@ scale = Vector2(1.2697, 1.54422)
 [node name="Start-End-Points" type="Node2D" parent="RoomObjects"]
 
 [node name="StarterPod" parent="RoomObjects/Start-End-Points" instance=ExtResource("5_r32i7")]
-position = Vector2(259, 291)
+position = Vector2(178, 264)
 scale = Vector2(0.576396, 0.579388)
 
 [node name="EndPod" parent="RoomObjects/Start-End-Points" instance=ExtResource("6_mf0v2")]
@@ -470,13 +472,14 @@ scale = Vector2(5, 5)
 texture = ExtResource("14_fodub")
 
 [node name="backStorageRoom" type="ParallaxLayer" parent="ParallexBackgrounds"]
-motion_scale = Vector2(0.38, 0.38)
+position = Vector2(-69, -121)
+motion_scale = Vector2(0.8, 0.8)
 motion_mirroring = Vector2(1440, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallexBackgrounds/backStorageRoom"]
-position = Vector2(796.5, 880)
-scale = Vector2(5.20312, 7.15833)
-texture = ExtResource("14_fodub")
+position = Vector2(1042, 883)
+scale = Vector2(10, 10)
+texture = ExtResource("15_qrhen")
 
 [node name="middlePods" type="ParallaxLayer" parent="ParallexBackgrounds"]
 visible = false
@@ -488,6 +491,7 @@ scale = Vector2(3, 3)
 texture = ExtResource("15_1ooeo")
 
 [node name="middleMetalPlatform" type="ParallaxLayer" parent="ParallexBackgrounds"]
+visible = false
 motion_scale = Vector2(0.76, 0.76)
 motion_mirroring = Vector2(1440, 0)
 
@@ -506,6 +510,7 @@ scale = Vector2(3, 3)
 texture = ExtResource("17_d7jpp")
 
 [node name="frontPipes" type="ParallaxLayer" parent="ParallexBackgrounds"]
+visible = false
 motion_scale = Vector2(0.93, 0.93)
 motion_mirroring = Vector2(1440, 0)
 
@@ -513,6 +518,10 @@ motion_mirroring = Vector2(1440, 0)
 position = Vector2(992, 1450)
 scale = Vector2(4.16, 4.08)
 texture = ExtResource("18_dct0f")
+
+[node name="winSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("19_fhxds")
+volume_db = 24.0
 
 [connection signal="pressed" from="Player/NextRoomUI/nextRoom" to="." method="_on_next_room_pressed"]
 [connection signal="pressed" from="Player/NextRoomUI/retryRoom" to="." method="_on_retry_room_pressed"]

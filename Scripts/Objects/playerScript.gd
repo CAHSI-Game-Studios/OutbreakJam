@@ -40,6 +40,7 @@ var selectedStim : int = 0
 var decay : float 
 var inmovable : bool = false
 var over : bool = false
+var panickShowDisplay : bool = false
 
 # Stim variables
 var canDash : bool = false
@@ -300,7 +301,7 @@ func _on_magnetic_timer_timeout() -> void:
 	set_collision_layer_value(2,false)
 	set_collision_mask_value(2,false)
 func _on_delay_timeout() -> void:
-	promptEndScreen.emit()
+	panickShowDisplay = true
 	lose_sfx.play()
 func _on_use_stim_timeout() -> void:
 	isStimming = false

@@ -259,6 +259,7 @@ texture = ExtResource("19_otpy2")
 
 [node name="winSFX" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("20_q45ex")
+volume_db = 24.0
 
 [node name="Spike" parent="." instance=ExtResource("7_ir20a")]
 position = Vector2(-523, -123)
