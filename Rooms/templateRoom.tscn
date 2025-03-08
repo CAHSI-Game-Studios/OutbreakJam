@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://pt2cne4b811m"]
+[gd_scene load_steps=22 format=4 uid="uid://pt2cne4b811m"]
 
 [ext_resource type="Script" uid="uid://rd2hbd32gk06" path="res://Scripts/Objects/roomScript.gd" id="1_8wg8j"]
 [ext_resource type="TileSet" uid="uid://b6xkt4gowkr3s" path="res://TileSets/facilityTileSet.tres" id="2_fmw8v"]
@@ -19,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://k1n3pvmt72k" path="res://Assets/Backgrounds/bulkhead-walls-pipes.png" id="13_0b0es"]
 [ext_resource type="PackedScene" uid="uid://xjwd0fo5ific" path="res://Objects/magneticFieldAttract.tscn" id="13_1jcex"]
 [ext_resource type="PackedScene" uid="uid://dd2mw3xef647g" path="res://Objects/magneticFieldRepel.tscn" id="14_86i0o"]
+[ext_resource type="AudioStream" uid="uid://djaxdxh1d3lns" path="res://Assets/SFX/win-176035.mp3" id="20_wono5"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_uf1if"]
 font_size = 30
@@ -247,6 +248,9 @@ motion_mirroring = Vector2(1440, 0)
 [node name="Sprite2D2" type="Sprite2D" parent="ParallexBackgrounds/frontPipes"]
 scale = Vector2(3, 3)
 texture = ExtResource("13_0b0es")
+
+[node name="winSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("20_wono5")
 
 [connection signal="promptEndScreen" from="Player" to="." method="_on_player_prompt_end_screen"]
 [connection signal="pressed" from="Player/NextRoomUI/nextRoom" to="." method="_on_next_room_pressed"]

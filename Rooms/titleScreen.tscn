@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://bad3uskc1xgfe"]
+
+[ext_resource type="Texture2D" uid="uid://bojwa2ualf5yw" path="res://Assets/Objects/titleScreen.png" id="1_cam1i"]
+[ext_resource type="Script" uid="uid://n3u4g685dmma" path="res://Scripts/Objects/titleRoomScript.gd" id="2_2talm"]
+
+[node name="TitleScreen" type="Sprite2D"]
+texture = ExtResource("1_cam1i")
+script = ExtResource("2_2talm")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.3, 0.425)
+
+[node name="Button" type="Button" parent="."]
+modulate = Color(1, 1, 1, 0)
+offset_left = -1191.0
+offset_top = 338.0
+offset_right = -1183.0
+offset_bottom = 346.0
+scale = Vector2(310.469, 43.9839)
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
