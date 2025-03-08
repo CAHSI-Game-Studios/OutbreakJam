@@ -1,3 +1,7 @@
 extends Node
 
-var playerReference : Player = null
+var deathCount : int = 0
+
+
+func addDeathCount() -> void:
+	deathCount += 1
