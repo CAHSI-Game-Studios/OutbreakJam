@@ -7,4 +7,4 @@ func _on_body_entered(player: Player) -> void:
 	player.inmovable = true
 	player.decay_bar.visible = false
 	player.item_ui.visible = false
-	get_parent().get_parent().endRoom()
+	get_tree().root.endRom()

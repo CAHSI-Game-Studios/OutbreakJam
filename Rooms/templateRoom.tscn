@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=4 uid="uid://pt2cne4b811m"]
+[gd_scene load_steps=21 format=4 uid="uid://pt2cne4b811m"]
 
 [ext_resource type="Script" uid="uid://rd2hbd32gk06" path="res://Scripts/Objects/roomScript.gd" id="1_8wg8j"]
 [ext_resource type="TileSet" uid="uid://b6xkt4gowkr3s" path="res://TileSets/facilityTileSet.tres" id="2_fmw8v"]
@@ -15,6 +15,7 @@
 [ext_resource type="AudioStream" uid="uid://c5e4der8168q8" path="res://Assets/Music/industrial.mp3" id="9_y71i1"]
 [ext_resource type="PackedScene" uid="uid://dj2h6lwaa0s01" path="res://Objects/laser.tscn" id="10_86i0o"]
 [ext_resource type="Texture2D" uid="uid://dfx4o2ol7m3sn" path="res://Assets/Backgrounds/bulkhead-walls-platform.png" id="11_d5yrk"]
+[ext_resource type="PackedScene" uid="uid://b82yriwh87yqa" path="res://Objects/oneWayPlatform.tscn" id="12_03woc"]
 [ext_resource type="Texture2D" uid="uid://k1n3pvmt72k" path="res://Assets/Backgrounds/bulkhead-walls-pipes.png" id="13_0b0es"]
 [ext_resource type="PackedScene" uid="uid://xjwd0fo5ific" path="res://Objects/magneticFieldAttract.tscn" id="13_1jcex"]
 [ext_resource type="PackedScene" uid="uid://dd2mw3xef647g" path="res://Objects/magneticFieldRepel.tscn" id="14_86i0o"]
@@ -37,35 +38,51 @@ tile_set = ExtResource("3_kqf0g")
 
 [node name="RoomObjects" type="Node2D" parent="."]
 
-[node name="Spike" parent="RoomObjects" instance=ExtResource("8_0b0es")]
+[node name="Spikes" type="Node2D" parent="RoomObjects"]
+
+[node name="Spike" parent="RoomObjects/Spikes" instance=ExtResource("8_0b0es")]
 position = Vector2(79, -164)
 
-[node name="MagneticFieldAttract" parent="RoomObjects" instance=ExtResource("13_1jcex")]
-position = Vector2(-230, -213)
-scale = Vector2(-5.54554, 6.69228)
+[node name="Start-End-Points" type="Node2D" parent="RoomObjects"]
 
-[node name="JumpPad" parent="RoomObjects" instance=ExtResource("9_vxj2w")]
-position = Vector2(23, -173)
-rotation = -1.5708
-
-[node name="StarterPod" parent="RoomObjects" instance=ExtResource("8_ixaof")]
+[node name="StarterPod" parent="RoomObjects/Start-End-Points" instance=ExtResource("8_ixaof")]
 position = Vector2(-140, -189)
 scale = Vector2(0.576396, 0.579388)
 
-[node name="EndPod" parent="RoomObjects" instance=ExtResource("7_uf1if")]
+[node name="EndPod" parent="RoomObjects/Start-End-Points" instance=ExtResource("7_uf1if")]
 position = Vector2(129, -191)
 
-[node name="MagneticFieldRepel" parent="RoomObjects" instance=ExtResource("14_86i0o")]
+[node name="Platforms" type="Node2D" parent="RoomObjects"]
+
+[node name="OneWayPlatform" parent="RoomObjects/Platforms" instance=ExtResource("12_03woc")]
+position = Vector2(-59, -187)
+
+[node name="MagneticFields" type="Node2D" parent="RoomObjects"]
+
+[node name="MagneticFieldAttract" parent="RoomObjects/MagneticFields" instance=ExtResource("13_1jcex")]
+position = Vector2(-230, -213)
+rotation = 3.14159
+scale = Vector2(5.54554, -6.69228)
+
+[node name="MagneticFieldRepel" parent="RoomObjects/MagneticFields" instance=ExtResource("14_86i0o")]
 position = Vector2(-45, -251)
 scale = Vector2(3.44732, 3.82042)
 
-[node name="Laser" parent="RoomObjects" instance=ExtResource("10_86i0o")]
+[node name="Lasers" type="Node2D" parent="RoomObjects"]
+
+[node name="Laser" parent="RoomObjects/Lasers" instance=ExtResource("10_86i0o")]
 position = Vector2(-242, -1.99997)
 scale = Vector2(10.2582, 13.2666)
 
-[node name="Laser2" parent="RoomObjects" instance=ExtResource("10_86i0o")]
+[node name="Laser2" parent="RoomObjects/Lasers" instance=ExtResource("10_86i0o")]
 position = Vector2(-336, -76)
 scale = Vector2(3.80676, 4.91192)
+
+[node name="JumpPads" type="Node2D" parent="RoomObjects"]
+
+[node name="JumpPad" parent="RoomObjects/JumpPads" instance=ExtResource("9_vxj2w")]
+position = Vector2(23, -173)
+rotation = -1.5708
 
 [node name="Player" parent="." instance=ExtResource("4_fmw8v")]
 position = Vector2(-111, -205)

@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://b82yriwh87yqa"]
+
+[ext_resource type="Texture2D" uid="uid://dg83rw5nu8yd2" path="res://Assets/Tiles/facilityTileSet.png" id="1_t25f3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1i3wa"]
+size = Vector2(32, 6)
+
+[node name="OneWayPlatform" type="Sprite2D"]
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("1_t25f3")
+region_enabled = true
+region_rect = Rect2(160.113, 282.037, 31.8727, 6.17639)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_1i3wa")
+one_way_collision = true

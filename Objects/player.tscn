@@ -644,7 +644,7 @@ states/use_item/position = Vector2(758, 85)
 states/walk/node = SubResource("AnimationNodeAnimation_luutw")
 states/walk/position = Vector2(403, -22)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_jpmd1"), "idle", "use_item", SubResource("AnimationNodeStateMachineTransition_4wnld"), "use_item", "idle", SubResource("AnimationNodeStateMachineTransition_wo3qn"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_ib4wf"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_1c283"), "use_item", "walk", SubResource("AnimationNodeStateMachineTransition_s4fk2"), "walk", "use_item", SubResource("AnimationNodeStateMachineTransition_hyrmm"), "idle", "jump_start", SubResource("AnimationNodeStateMachineTransition_kf005"), "walk", "jump_start", SubResource("AnimationNodeStateMachineTransition_aww5v"), "jump_start", "air", SubResource("AnimationNodeStateMachineTransition_ollxt"), "air", "land", SubResource("AnimationNodeStateMachineTransition_osi4j"), "land", "idle", SubResource("AnimationNodeStateMachineTransition_7bqhx"), "walk", "run", SubResource("AnimationNodeStateMachineTransition_tskd3"), "run", "walk", SubResource("AnimationNodeStateMachineTransition_oaxgd"), "use_item", "run", SubResource("AnimationNodeStateMachineTransition_kb1b0"), "run", "use_item", SubResource("AnimationNodeStateMachineTransition_us7cc"), "jump_start", "use_item", SubResource("AnimationNodeStateMachineTransition_msmyv"), "air", "use_item", SubResource("AnimationNodeStateMachineTransition_lsesn"), "land", "use_item", SubResource("AnimationNodeStateMachineTransition_42fh7"), "use_item", "air", SubResource("AnimationNodeStateMachineTransition_cugkd"), "idle", "die", SubResource("AnimationNodeStateMachineTransition_3ye7n"), "walk", "die", SubResource("AnimationNodeStateMachineTransition_xxqss"), "run", "die", SubResource("AnimationNodeStateMachineTransition_6jlvs"), "jump_start", "die", SubResource("AnimationNodeStateMachineTransition_0ht63"), "use_item", "die", SubResource("AnimationNodeStateMachineTransition_eq7mc"), "air", "die", SubResource("AnimationNodeStateMachineTransition_cfctp"), "land", "die", SubResource("AnimationNodeStateMachineTransition_kl1fw"), "run", "jump_start", SubResource("AnimationNodeStateMachineTransition_sbav2"), "run", "air", SubResource("AnimationNodeStateMachineTransition_1sbjj"), "idle", "dash", SubResource("AnimationNodeStateMachineTransition_vx5yh"), "run", "dash", SubResource("AnimationNodeStateMachineTransition_tvmpb"), "dash", "idle", SubResource("AnimationNodeStateMachineTransition_yxlei"), "jump_start", "dash", SubResource("AnimationNodeStateMachineTransition_ctpi4"), "use_item", "dash", SubResource("AnimationNodeStateMachineTransition_gurtw"), "air", "dash", SubResource("AnimationNodeStateMachineTransition_padco"), "land", "dash", SubResource("AnimationNodeStateMachineTransition_ry78x"), "dash", "die", SubResource("AnimationNodeStateMachineTransition_wmepj"), "dash", "use_item", SubResource("AnimationNodeStateMachineTransition_hyl1l")]
-graph_offset = Vector2(-109.868, 16.4875)
+graph_offset = Vector2(-59.868, 143.488)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3n8j0"]
 bg_color = Color(0.621771, 0.0583083, 1.44392e-07, 1)
@@ -701,12 +701,10 @@ z_index = 1
 [node name="Stim2" parent="ItemUI" instance=ExtResource("10_3n8j0")]
 z_index = 1
 position = Vector2(32, 0)
-scale = Vector2(1, 1)
 
 [node name="Stim3" parent="ItemUI" instance=ExtResource("10_3n8j0")]
 z_index = 1
 position = Vector2(64, 0)
-scale = Vector2(1, 1)
 
 [node name="ColorRect" type="ColorRect" parent="ItemUI"]
 layout_mode = 0
@@ -752,8 +750,7 @@ text = "Begin"
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(-2, -1)
 zoom = Vector2(2.86, 2.86)
-position_smoothing_enabled = true
-position_smoothing_speed = 9.0
+position_smoothing_speed = 7.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 follow_viewport_enabled = true
