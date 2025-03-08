@@ -1,0 +1,49 @@
+[gd_scene load_steps=7 format=3 uid="uid://dj2h6lwaa0s01"]
+
+[ext_resource type="Script" uid="uid://perseca1747e" path="res://Scripts/Objects/laser.gd" id="1_fblkl"]
+[ext_resource type="Texture2D" uid="uid://dg83rw5nu8yd2" path="res://Assets/Tiles/facilityTileSet.png" id="2_mhfta"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q8nmy"]
+atlas = ExtResource("2_mhfta")
+region = Rect2(256, 256, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7trx2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q8nmy")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w77uk"]
+size = Vector2(21, 6.003)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fblkl"]
+size = Vector2(10, 3)
+
+[node name="Laser" type="Area2D"]
+script = ExtResource("1_fblkl")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.799606, 0.659224)
+sprite_frames = SubResource("SpriteFrames_7trx2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.691683, 0)
+scale = Vector2(0.22331, -2.66542)
+shape = SubResource("RectangleShape2D_w77uk")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1, -9)
+shape = SubResource("RectangleShape2D_fblkl")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1, 9)
+shape = SubResource("RectangleShape2D_fblkl")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

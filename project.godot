@@ -11,12 +11,16 @@ config_version=5
 [application]
 
 config/name="2D-PLATFORMER-PUZZLE"
-run/main_scene="uid://pt2cne4b811m"
+run/main_scene="uid://phmodwumtahl"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 
 [autoload]
 
 Global="*res://Scripts/Global.gd"
+
+[display]
+
+window/stretch/mode="canvas_items"
 
 [input]
 
