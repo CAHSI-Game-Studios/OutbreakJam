@@ -7,7 +7,7 @@ class_name Room
 @onready var player: Player = $Player
 @onready var next_room_ui: Control = $Player/NextRoomUI
 @onready var retry_ui: Control = $Player/RetryUI
-@onready var starter_pod: StarterPod = $RoomObjects/StarterPod
+@onready var starter_pod: StarterPod = $"RoomObjects/Start-End-Points/StarterPod"
 
 # Author: Puma
 func _ready():

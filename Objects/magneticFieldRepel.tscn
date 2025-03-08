@@ -14,6 +14,7 @@ gravity_direction = Vector2(0, 0)
 gravity = -980.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.509804)
 scale = Vector2(0.16, 0.16)
 texture = ExtResource("1_ajj85")
 vframes = 2

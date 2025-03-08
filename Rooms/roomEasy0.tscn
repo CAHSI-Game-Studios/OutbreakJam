@@ -20,7 +20,7 @@
 font_size = 30
 font_color = Color(0, 0, 0, 1)
 
-[node name="TemplateRoom" type="Node2D"]
+[node name="roomHard0" type="Node2D"]
 script = ExtResource("1_d534u")
 nextRoomPath = "res://Rooms/room1.tscn"
 

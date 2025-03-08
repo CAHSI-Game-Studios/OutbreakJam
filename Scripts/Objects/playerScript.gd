@@ -17,8 +17,7 @@ signal promptEndScreen
 
 
 const SPEED : int = 300.0
-const JUMP_VELOCITY : int = -400.0
-
+@export var JUMP_VELOCITY : int = -400.0 
 @export var dashSpeed: int = 1500
 var currentMaxSpeed : int
 @export var maxSpeedWalk : int  = 300
@@ -96,9 +95,12 @@ func _physics_process(delta: float) -> void:
 		onGround = true
 		
 	
-	velocity.x = min(SPEED*direction*running, currentMaxSpeed)
+	
 	if isDashing:
 		velocity.x = min(dashSpeed*direction*running, currentMaxSpeed)
+	else:
+		velocity.x = min(SPEED*direction*running, currentMaxSpeed)
+		
 	if inmovable:
 		velocity.x = 0
 	move_and_slide()
@@ -115,13 +117,18 @@ func update_ui():
 func input():
 	if allowInput:
 		if Input.is_action_just_pressed("item_left"):
-			selectedStim = max(0,selectedStim-1)
+			selectedStim -=1
+			if selectedStim < 0:
+				selectedStim= 2
 		if Input.is_action_just_pressed("item_right"):
-			selectedStim = min(2,selectedStim+1)
+			selectedStim +=1
+			if selectedStim > 2:
+				selectedStim = 0
 		if Input.is_action_just_pressed("use_item") && !heldStims[selectedStim].isUsed():
 			useStim()
 		if Input.is_action_pressed("down"):
 			fastFall = 1.5
+			position.y += 1 # one way collisions
 		else:
 			fastFall = 1
 		if Input.is_action_just_pressed("jump"):
@@ -136,7 +143,7 @@ func input():
 		if Input.is_action_just_pressed("dash") && canDash:
 			dash()  
 			
-		if Input.is_action_pressed("run") && direction:
+		if Input.is_action_pressed("run") && direction && is_on_floor():
 			running = 1.25
 		else:
 			running = 1
@@ -254,9 +261,9 @@ func reroll() -> void:
 			stim.setType(HEAL_STIM)
 		elif randonInteger < 60:
 			stim.setType(DASH_STIM)
-		elif randonInteger < 80:
-			stim.setType(DOUBLE_JUMP_STIM)
 		elif randonInteger < 90:
+			stim.setType(DOUBLE_JUMP_STIM)
+		elif randonInteger < 95:
 			stim.setType(FLOAT_STIM)
 		elif randonInteger <= 100:
 			stim.setType(MAGNETIC_STIM)
